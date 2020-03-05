@@ -111,6 +111,10 @@ sid = {"S-1-0": "Null Authority",
        "S-1-5-root domain-518": "Schema Admins",
        "S-1-5-root domain-519": "Enterprise Admins"
        }
+
+# Security Options - resolve Microsoft Server-Client keys with text file
+# Security Options - Add missing registry configurations
+
 local_policy = {
     'password_policy': {
         "MinimumPasswordAge": "Minimum password age",
@@ -251,20 +255,20 @@ local_policy = {
             "Microsoft network server: Amount of idle time required before suspending session",
         'EnableForcedLogOff':
             "Microsoft network server: Disconnect clients when logon hours expire",
-        'EnableSecuritySignature':
+        'LanManServer\\Parameters\\EnableSecuritySignature':
             "Microsoft network client: Digitally sign communications (if server agrees)",
         'NullSessionPipes,':
             "Network access: Named Pipes that can be accessed anonymously",
-        'RequireSecuritySignature':
+        'LanManServer\\Parameters\\RequireSecuritySignature':
             "Microsoft network client: Digitally sign communications (always)",
         'RestrictNullSessAccess':
             "Network access: Restrict anonymous access to Named Pipes and Shares",
         'EnablePlainTextPassword':
             "Microsoft network client: Send unencrypted password to third-party SMB servers",
-        #     'EnableSecuritySignature':
-        # "Microsoft network server: Digitally sign communications (if client agrees)",
-        #     'RequireSecuritySignature':
-        # "Microsoft network server: Digitally sign communications (always)",
+        'LanManWorkstation\\Parameters\\EnableSecuritySignature':
+            "Microsoft network server: Digitally sign communications (if client agrees)",
+        'LanManWorkstation\\Parameters\\RequireSecuritySignature':
+            "Microsoft network server: Digitally sign communications (always)",
         'LDAPClientIntegrity':
             "Network security: LDAP client signing requirements",
         'DisablePasswordChange':
@@ -276,9 +280,12 @@ local_policy = {
         'SealSecureChannel':
             "Domain member: Digitally encrypt secure channel data (when possible)",
         'SignSecureChannel':
-            "Domain member: Digitally sign secure channel data (when possible)"
+            "Domain member: Digitally sign secure channel data (when possible)",
+        'AllowedExactPaths\\Machine':
+            "Network access: Remotely accessible registry paths"
     }
 }
+
 reg_keys = {
     'Audit':
         {
@@ -289,9 +296,7 @@ reg_keys = {
         },
     'Security Options':
         {
-            '0': '0-Enabled', '2': 'Third Option',
-            '1': '1-Enabled',
-            '4': '4-Enabled',
-            '3': '3-Disabled',
-            '7': '7-No message'}
+            '0': 'Enabled',
+            '1': 'Disabled'
+        },
 }
