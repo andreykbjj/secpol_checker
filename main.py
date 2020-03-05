@@ -61,16 +61,24 @@ def security_options_registry_values_to_dict():  # Map Registry Values in reg_ke
                 line = line.strip('\n').replace('=', ':').split(':')
                 configs = line[0]
                 status = line[1].split(',')
+                stats = status[1]
                 for k in local_policy['security_options'].keys():
                     if configs.__contains__(k):
                         index = configs.find(k)
-                        if status[0] in reg_keys['Security Options'].keys():
-                            status = [reg_keys['Security Options'].get(status[0]), reg_keys['Security Options'].get(status[1])]
+                        if stats in reg_keys['Security Options'].keys():
+                            # print(len(stats))
+                            status = [reg_keys['Security Options'].get(stats)]
                             mapped = {local_policy['security_options'].get(configs[index:]): status}
                             fine_security_options_dict.update(mapped)
+                            # print(stats)
+                        elif stats not in reg_keys['Security Options'].keys():
+                            mapped = {local_policy['security_options'].get(configs[index:]): status[1:]}
+                            fine_security_options_dict.update(mapped)
+
+        fine_security_options_dict.update(other_sec_options_policy_to_dict())
 
         # for keys, values in fine_security_options_dict.items():
-        #     print(keys, *values)
+        #     print(keys, '\t', *values)
         print(colored(fine_security_options_dict, 'red'))
 
         return fine_security_options_dict
@@ -93,12 +101,16 @@ def other_sec_options_policy_to_dict():
                 if line[0] in local_policy['other_sec_options_configurations'].keys():
                     keys = local_policy['other_sec_options_configurations'].get(line[0])
                     vals = line[1]
-                    new_dict = {keys: vals}
-                    raw_other_sec_options_dict.update(new_dict)
+                    if reg_keys['Security Options'].get(vals) is None:
+                        new_dict = {keys: vals}
+                        raw_other_sec_options_dict.update(new_dict)
+                    elif reg_keys['Security Options'].get(vals) is not None:
+                        new_dict = {keys: reg_keys['Security Options'].get(vals)}
+                        raw_other_sec_options_dict.update(new_dict)
 
-        print(colored(raw_other_sec_options_dict, 'red'))
+        # print(colored(raw_other_sec_options_dict, 'blue'))
 
-        return
+        return raw_other_sec_options_dict
 
     except IndexError as index_error:
         print(f'Error: {index_error}')
@@ -123,7 +135,7 @@ def password_policy_to_dict():
 
         print(colored(raw_password_policy_dict, 'blue'))
 
-        return
+        return raw_password_policy_dict
 
     except IndexError as index_error:
         print(f'Error: {index_error}')
@@ -148,7 +160,7 @@ def lockout_policy_to_dict():
 
         print(colored(raw_lockout_policy_dict, 'blue'))
 
-        return
+        return raw_lockout_policy_dict
 
     except IndexError as index_error:
         print(f'Error: {index_error}')
@@ -172,7 +184,7 @@ def event_audit():
                     raw_local_p_user_right_dict.update(new_dict)
             print(colored(raw_local_p_user_right_dict, 'blue'))
 
-            return
+            return raw_local_p_user_right_dict
 
     except IndexError as index_error:
         print(f'Error: {index_error}')
@@ -182,5 +194,6 @@ password_policy_to_dict()
 lockout_policy_to_dict()
 event_audit()
 privilege_rights_to_dict()
-other_sec_options_policy_to_dict()
+# other_sec_options_policy_to_dict()    # Added to Security Options, just like in MMC
 security_options_registry_values_to_dict()
+
