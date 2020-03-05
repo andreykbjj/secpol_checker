@@ -111,185 +111,187 @@ sid = {"S-1-0": "Null Authority",
        "S-1-5-root domain-518": "Schema Admins",
        "S-1-5-root domain-519": "Enterprise Admins"
        }
-
-password_policy = {
-    "MinimumPasswordAge": "Minimum password age",
-    "MaximumPasswordAge": "Maximum password age",
-    "MinimumPasswordLength": "Minimum password length",
-    "PasswordComplexity": "Password must meet complexity requirements",
-    "PasswordHistorySize": "Enforce password history",
+local_policy = {
+    'password_policy': {
+        "MinimumPasswordAge": "Minimum password age",
+        "MaximumPasswordAge": "Maximum password age",
+        "MinimumPasswordLength": "Minimum password length",
+        "PasswordComplexity": "Password must meet complexity requirements",
+        "PasswordHistorySize": "Enforce password history",
+    },
+    'lockout_policy': {
+        "LockoutBadCount": "Account lockout threshold",
+        "ResetLockoutCount": "Reset account lockout counter after",
+        "LockoutDuration": "Account lockout duration",
+    },
+    'other_sec_options_configurations': {
+        "RequireLogonToChangePassword": "Require Logon To Change Password",
+        "ForceLogoffWhenHourExpire": "Force Logoff When Hour Expire",
+        "NewAdministratorName": "New Administrator Name",
+        "NewGuestName": "New Guest Name",
+        "ClearTextPassword": "Clear Text Password",
+        "LSAAnonymousNameLookup": "LSA Anonymous Name Lookup",
+        "EnableAdminAccount": "Enable Admin Account",
+        "EnableGuestAccount": "Enable Guest Account"
+    },
+    'audit_dict': {
+        "AuditSystemEvents": "Audit System Events",
+        "AuditLogonEvents": "Audit Logon Events",
+        "AuditObjectAccess": "Audit Object Access",
+        "AuditPrivilegeUse": "Audit Privilege Use",
+        "AuditPolicyChange": "Audit Policy Change",
+        "AuditAccountManage": "Audit Account Manage",
+        "AuditProcessTracking": "Audit Process Tracking",
+        "AuditDSAccess": "Audit DS Access",
+        "AuditAccountLogon": "Audit Account Logon"
+    },
+    'user_rights_assignment': {
+        'SeTrustedCredManAccessPrivilege': 'Access Credential Manager as a trusted caller',
+        'SeNetworkLogonRight': 'Access this computer from the network',
+        'SeTcbPrivilege': 'Act as part of the operating system',
+        'SeMachineAccountPrivilege': 'Add workstations to domain',
+        'SeIncreaseQuotaPrivilege': 'Adjust memory quotas for a process',
+        'SeInteractiveLogonRight': 'Allow log on locally',
+        'SeRemoteInteractiveLogonRight': 'Allow log on through Remote Desktop Services',
+        'SeBackupPrivilege': 'Back up files and directories',
+        'SeChangeNotifyPrivilege': 'Bypass traverse checking',
+        'SeSystemtimePrivilege': 'Change the system time',
+        'SeTimeZonePrivilege': 'Change the time zone',
+        'SeCreatePagefilePrivilege': 'Create a pagefile',
+        'SeCreateTokenPrivilege': 'Create a token object',
+        'SeCreateGlobalPrivilege': 'Create global objects',
+        'SeCreatePermanentPrivilege': 'Create permanent shared objects',
+        'SeCreateSymbolicLinkPrivilege': 'Create symbolic links',
+        'SeDebugPrivilege': 'Debug programs',
+        'SeDenyNetworkLogonRight': 'Deny access to this computer from the network',
+        'SeDenyBatchLogonRight': 'Deny log on as a batch job',
+        'SeDenyServiceLogonRight': 'Deny log on as a service',
+        'SeDenyInteractiveLogonRight': 'Deny log on locally',
+        'SeDenyRemoteInteractiveLogonRight': 'Deny log on through Remote Desktop Services',
+        'SeEnableDelegationPrivilege': 'Enable computer and user accounts to be trusted for delegation',
+        'SeRemoteShutdownPrivilege': 'Force shutdown from a remote system',
+        'SeAuditPrivilege': 'Generate security audits',
+        'SeImpersonatePrivilege': 'Impersonate a client after authentication',
+        'SeIncreaseWorkingSetPrivilege': 'Increase a process working set',
+        'SeIncreaseBasePriorityPrivilege': 'Increase scheduling priority',
+        'SeLoadDriverPrivilege': 'Load and unload device drivers',
+        'SeLockMemoryPrivilege': 'Lock pages in memory',
+        'SeBatchLogonRight': 'Log on as a batch job',
+        'SeServiceLogonRight': 'Log on as a service',
+        'SeSecurityPrivilege': 'Manage auditing and security log',
+        'SeRelabelPrivilege': 'Modify an object label',
+        'SeSystemEnvironmentPrivilege': 'Modify firmware environment values',
+        'SeManageVolumePrivilege': 'Perform volume maintenance tasks',
+        'SeProfileSingleProcessPrivilege': 'Profile single process',
+        'SeSystemProfilePrivilege': 'Profile system performance',
+        'SeUndockPrivilege': 'Remove computer from docking station',
+        'SeAssignPrimaryTokenPrivilege': 'Replace a process level token',
+        'SeRestorePrivilege': 'Restore files and directories',
+        'SeShutdownPrivilege': 'Shut down the system',
+        'SeSyncAgentPrivilege': 'Synchronize directory service data',
+        'SeTakeOwnershipPrivilege': 'Take ownership of files or other objects',
+        'SeDelegateSessionUserImpersonatePrivilege': 'Modify firmware environment values'
+    },
+    'security_options': {
+        'CachedLogonsCount':
+            "Interactive logon: Number of previous logons to cache (in case domain controller is not available)",
+        'ForceUnlockLogon':
+            "Interactive logon: Require Domain Controller Authentication to unlock workstation",
+        'PasswordExpiryWarning':
+            "Interactive logon: Prompt user to change password before expiration",
+        'ScRemoveOption':
+            "Interactive logon: Smart card removal behavior",
+        'ConsentPromptBehaviorAdmin':
+            "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode",
+        'ConsentPromptBehaviorUser':
+            "User Account Control: Behavior of the elevation prompt for standard users",
+        'DisableCAD':
+            "Interactive logon: Do not require CTRL+ALT+DEL",
+        'DontDisplayLastUserName':
+            "Interactive logon: Do not display last user name",
+        'EnableInstallerDetection':
+            "User Account Control: Detect application installations and prompt for elevation",
+        'EnableLUA':
+            "User Account Control: Run all administrators in Admin Approval Mode",
+        'EnableSecureUIAPaths':
+            "User Account Control: Only elevate UIAccess applications that are installed in secure locations",
+        'EnableUIADesktopToggle':
+            "User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop",
+        'EnableVirtualization':
+            "User Account Control: Virtualize file and registry write failures to per-user locations",
+        'FilterAdministratorToken':
+            "User Account Control: Admin Approval Mode for the Built-in Administrator account",
+        'LegalNoticeCaption':
+            "Interactive logon: Message title for users attempting to log on",
+        'LegalNoticeText':
+            "Interactive logon: Message text for users attempting to log on",
+        'PromptOnSecureDesktop':
+            "User Account Control: Switch to the secure desktop when prompting for elevation",
+        'ShutdownWithoutLogon':
+            "Shutdown: Allow system to be shut down without having to log on",
+        'CrashOnAuditFail':
+            "Audit: Shut down system immediately if unable to log security audits",
+        'DisableDomainCreds':
+            "Network access: Do not allow storage of passwords and credentials for network authentication",
+        'ForceGuest':
+            "Network access: Sharing and security model for local accounts",
+        'LimitBlankPasswordUse':
+            "Accounts: Limit local account use of blank passwords to console logon only",
+        'NoLMHash':
+            "Network security: Do not store LAN Manager hash value on next password change",
+        'RestrictAnonymousSAM':
+            "Network access: Do not allow anonymous enumeration of SAM accounts",
+        'ObCaseInsensitive':
+            "System objects: Require case insensitivity for non Windows subsystems",
+        'ProtectionMode':
+            "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)",
+        'optional,':
+            "System settings: Optional subsystems",
+        'AutoDisconnect5':
+            "Microsoft network server: Amount of idle time required before suspending session",
+        'EnableForcedLogOff':
+            "Microsoft network server: Disconnect clients when logon hours expire",
+        'EnableSecuritySignature':
+            "Microsoft network client: Digitally sign communications (if server agrees)",
+        'NullSessionPipes,':
+            "Network access: Named Pipes that can be accessed anonymously",
+        'RequireSecuritySignature':
+            "Microsoft network client: Digitally sign communications (always)",
+        'RestrictNullSessAccess':
+            "Network access: Restrict anonymous access to Named Pipes and Shares",
+        'EnablePlainTextPassword':
+            "Microsoft network client: Send unencrypted password to third-party SMB servers",
+        #     'EnableSecuritySignature':
+        # "Microsoft network server: Digitally sign communications (if client agrees)",
+        #     'RequireSecuritySignature':
+        # "Microsoft network server: Digitally sign communications (always)",
+        'LDAPClientIntegrity':
+            "Network security: LDAP client signing requirements",
+        'DisablePasswordChange':
+            "Domain member: Disable machine account password changes",
+        'RequireSignOrSeal':
+            "Domain member: Digitally encrypt or sign secure channel data (always)",
+        'RequireStrongKey':
+            "Domain member: Require strong (Windows 2000 or later) session key",
+        'SealSecureChannel':
+            "Domain member: Digitally encrypt secure channel data (when possible)",
+        'SignSecureChannel':
+            "Domain member: Digitally sign secure channel data (when possible)"
+    }
 }
-
-lockout_policy = {
-    "LockoutBadCount": "Account lockout threshold",
-    "ResetLockoutCount": "Reset account lockout counter after",
-    "LockoutDuration": "Account lockout duration",
-}
-
-other_sec_options_configurations = {
-    "RequireLogonToChangePassword": "Require Logon To Change Password",
-    "ForceLogoffWhenHourExpire": "Force Logoff When Hour Expire",
-    "NewAdministratorName": "New Administrator Name",
-    "NewGuestName": "New Guest Name",
-    "ClearTextPassword": "Clear Text Password",
-    "LSAAnonymousNameLookup": "LSA Anonymous Name Lookup",
-    "EnableAdminAccount": "Enable Admin Account",
-    "EnableGuestAccount": "Enable Guest Account"
-}
-
-audit_dict = {
-    "AuditSystemEvents": "Audit System Events",
-    "AuditLogonEvents": "Audit Logon Events",
-    "AuditObjectAccess": "Audit Object Access",
-    "AuditPrivilegeUse": "Audit Privilege Use",
-    "AuditPolicyChange": "Audit Policy Change",
-    "AuditAccountManage": "Audit Account Manage",
-    "AuditProcessTracking": "Audit Process Tracking",
-    "AuditDSAccess": "Audit DS Access",
-    "AuditAccountLogon": "Audit Account Logon"
-}
-
-user_rights_assignment = {
-    'SeTrustedCredManAccessPrivilege': 'Access Credential Manager as a trusted caller',
-    'SeNetworkLogonRight': 'Access this computer from the network',
-    'SeTcbPrivilege': 'Act as part of the operating system',
-    'SeMachineAccountPrivilege': 'Add workstations to domain',
-    'SeIncreaseQuotaPrivilege': 'Adjust memory quotas for a process',
-    'SeInteractiveLogonRight': 'Allow log on locally',
-    'SeRemoteInteractiveLogonRight': 'Allow log on through Remote Desktop Services',
-    'SeBackupPrivilege': 'Back up files and directories',
-    'SeChangeNotifyPrivilege': 'Bypass traverse checking',
-    'SeSystemtimePrivilege': 'Change the system time',
-    'SeTimeZonePrivilege': 'Change the time zone',
-    'SeCreatePagefilePrivilege': 'Create a pagefile',
-    'SeCreateTokenPrivilege': 'Create a token object',
-    'SeCreateGlobalPrivilege': 'Create global objects',
-    'SeCreatePermanentPrivilege': 'Create permanent shared objects',
-    'SeCreateSymbolicLinkPrivilege': 'Create symbolic links',
-    'SeDebugPrivilege': 'Debug programs',
-    'SeDenyNetworkLogonRight': 'Deny access to this computer from the network',
-    'SeDenyBatchLogonRight': 'Deny log on as a batch job',
-    'SeDenyServiceLogonRight': 'Deny log on as a service',
-    'SeDenyInteractiveLogonRight': 'Deny log on locally',
-    'SeDenyRemoteInteractiveLogonRight': 'Deny log on through Remote Desktop Services',
-    'SeEnableDelegationPrivilege': 'Enable computer and user accounts to be trusted for delegation',
-    'SeRemoteShutdownPrivilege': 'Force shutdown from a remote system',
-    'SeAuditPrivilege': 'Generate security audits',
-    'SeImpersonatePrivilege': 'Impersonate a client after authentication',
-    'SeIncreaseWorkingSetPrivilege': 'Increase a process working set',
-    'SeIncreaseBasePriorityPrivilege': 'Increase scheduling priority',
-    'SeLoadDriverPrivilege': 'Load and unload device drivers',
-    'SeLockMemoryPrivilege': 'Lock pages in memory',
-    'SeBatchLogonRight': 'Log on as a batch job',
-    'SeServiceLogonRight': 'Log on as a service',
-    'SeSecurityPrivilege': 'Manage auditing and security log',
-    'SeRelabelPrivilege': 'Modify an object label',
-    'SeSystemEnvironmentPrivilege': 'Modify firmware environment values',
-    'SeManageVolumePrivilege': 'Perform volume maintenance tasks',
-    'SeProfileSingleProcessPrivilege': 'Profile single process',
-    'SeSystemProfilePrivilege': 'Profile system performance',
-    'SeUndockPrivilege': 'Remove computer from docking station',
-    'SeAssignPrimaryTokenPrivilege': 'Replace a process level token',
-    'SeRestorePrivilege': 'Restore files and directories',
-    'SeShutdownPrivilege': 'Shut down the system',
-    'SeSyncAgentPrivilege': 'Synchronize directory service data',
-    'SeTakeOwnershipPrivilege': 'Take ownership of files or other objects',
-    'SeDelegateSessionUserImpersonatePrivilege': 'Modify firmware environment values'
-}
-
-security_options = {
-    'CachedLogonsCount':
-        "Interactive logon: Number of previous logons to cache (in case domain controller is not available)",
-    'ForceUnlockLogon':
-        "Interactive logon: Require Domain Controller Authentication to unlock workstation",
-    'PasswordExpiryWarning=4,7':
-        "Interactive logon: Prompt user to change password before expiration",
-    'ScRemoveOption':
-        "Interactive logon: Smart card removal behavior",
-    'ConsentPromptBehaviorAdmin':
-        "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode",
-    'ConsentPromptBehaviorUser':
-        "User Account Control: Behavior of the elevation prompt for standard users",
-    'DisableCAD':
-        "Interactive logon: Do not require CTRL+ALT+DEL",
-    'DontDisplayLastUserName':
-        "Interactive logon: Do not display last user name",
-    'EnableInstallerDetection':
-        "User Account Control: Detect application installations and prompt for elevation",
-    'EnableLUA':
-        "User Account Control: Run all administrators in Admin Approval Mode",
-    'EnableSecureUIAPaths':
-        "User Account Control: Only elevate UIAccess applications that are installed in secure locations",
-    'EnableUIADesktopToggle':
-        "User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop",
-    'EnableVirtualization':
-        "User Account Control: Virtualize file and registry write failures to per-user locations",
-    'FilterAdministratorToken':
-        "User Account Control: Admin Approval Mode for the Built-in Administrator account",
-    'LegalNoticeCaption':
-        "Interactive logon: Message title for users attempting to log on",
-    'LegalNoticeText':
-        "Interactive logon: Message text for users attempting to log on",
-    'PromptOnSecureDesktop':
-        "User Account Control: Switch to the secure desktop when prompting for elevation",
-    'ShutdownWithoutLogon':
-        "Shutdown: Allow system to be shut down without having to log on",
-    'CrashOnAuditFail':
-        "Audit: Shut down system immediately if unable to log security audits",
-    'DisableDomainCreds':
-        "Network access: Do not allow storage of passwords and credentials for network authentication",
-    'ForceGuest':
-        "Network access: Sharing and security model for local accounts",
-    'LimitBlankPasswordUse':
-        "Accounts: Limit local account use of blank passwords to console logon only",
-    'NoLMHash':
-        "Network security: Do not store LAN Manager hash value on next password change",
-    'RestrictAnonymousSAM':
-        "Network access: Do not allow anonymous enumeration of SAM accounts",
-    'ObCaseInsensitive':
-        "System objects: Require case insensitivity for nonWindows subsystems",
-    'ProtectionMode':
-        "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)",
-    'optional,':
-        "System settings: Optional subsystems",
-    'AutoDisconnect5':
-        "Microsoft network server: Amount of idle time required before suspending session",
-    'EnableForcedLogOff':
-        "Microsoft network server: Disconnect clients when logon hours expire",
-    'EnableSecuritySignature':
-        "Microsoft network client: Digitally sign communications (if server agrees)",
-    'NullSessionPipes,':
-        "Network access: Named Pipes that can be accessed anonymously",
-    'RequireSecuritySignature':
-        "Microsoft network client: Digitally sign communications (always)",
-    'RestrictNullSessAccess':
-        "Network access: Restrict anonymous access to Named Pipes and Shares",
-    'EnablePlainTextPassword':
-        "Microsoft network client: Send unencrypted password to third-party SMB servers",
-    #     'EnableSecuritySignature':
-    # "Microsoft network server: Digitally sign communications (if client agrees)",
-    #     'RequireSecuritySignature':
-    # "Microsoft network server: Digitally sign communications (always)",
-    'LDAPClientIntegrity':
-        "Network security: LDAP client signing requirements",
-    'DisablePasswordChange':
-        "Domain member: Disable machine account password changes",
-    'RequireSignOrSeal':
-        "Domain member: Digitally encrypt or sign secure channel data (always)",
-    'RequireStrongKey':
-        "Domain member: Require strong (Windows 2000 or later) session key",
-    'SealSecureChannel':
-        "Domain member: Digitally encrypt secure channel data (when possible)",
-    'SignSecureChannel':
-        "Domain member: Digitally sign secure channel data (when possible)"
-}
-
-
-# Continue..
 reg_keys = {
-    '0': '0-Enabled',
-    '2': 'Third Option',
-    '1': '1-Enabled',
-    '4': '4-Enabled',
-    '3': '3-Disabled',
-    '7': '7-No message'}
+    'Audit':
+        {
+            0: 'No auditing',
+            1: 'Success',
+            2: 'Failure',
+            3: 'Success, Failure'
+        },
+    'Security Options':
+        {
+            '0': '0-Enabled', '2': 'Third Option',
+            '1': '1-Enabled',
+            '4': '4-Enabled',
+            '3': '3-Disabled',
+            '7': '7-No message'}
+}
