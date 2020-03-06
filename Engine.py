@@ -95,39 +95,39 @@ def checker():
     print(colored('Audit Policy', 'yellow'))
     print(colored(f'{lines}', 'yellow'))
 
-    if account_logon == 3:
+    if account_logon == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {account_logon}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {account_logon}', 'blue'))
-    if ds_access == 0:
+    if ds_access == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditDSAccess"]}: {ds_access}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditDSAccess"]}: {ds_access}', 'blue'))
-    if account_manage == 0:
+    if account_manage == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditAccountManage"]}: {account_manage}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditAccountManage"]}: {account_manage}', 'blue'))
-    if policy_change == 0:
+    if policy_change == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditPolicyChange"]}: {policy_change}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditPolicyChange"]}: {policy_change}', 'blue'))
-    if privilege_use == 0:
+    if privilege_use == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditPrivilegeUse"]}: {privilege_use}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditPrivilegeUse"]}: {privilege_use}', 'blue'))
-    if object_access == 0:
+    if object_access == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditObjectAccess"]}: {object_access}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditObjectAccess"]}: {object_access}', 'blue'))
-    if logon_events == 0:
+    if logon_events == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditLogonEvents"]}: {logon_events}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditLogonEvents"]}: {logon_events}', 'blue'))
-    if system_events == 0:
+    if system_events == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditSystemEvents"]}: {system_events}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditSystemEvents"]}: {system_events}', 'blue'))
-    if process_tracking == 0:
+    if process_tracking == 'No auditing':
         print(colored(f'{local_policy.get("audit_dict")["AuditProcessTracking"]}: {process_tracking}', 'red'))
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditProcessTracking"]}: {process_tracking}', 'blue'))
