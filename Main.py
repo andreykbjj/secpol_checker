@@ -1,7 +1,7 @@
-from mappings import sid, local_policy, reg_keys
 from termcolor import colored
+from Mappings import sid, local_policy, reg_keys
 
-sec_edit_file = 'this_pc.txt'
+sec_edit_file = 'secedit.txt'
 
 
 def get_line_number(phrase):
@@ -40,7 +40,7 @@ def privilege_rights_to_dict():
 
         # for k, v in fine_local_p_user_right_dict.items():
         #     print(k, *v)
-        print(colored(fine_user_right_dict, 'blue'))
+        # print(colored(fine_user_right_dict, 'blue'))
 
         return fine_user_right_dict
 
@@ -66,11 +66,9 @@ def security_options_registry_values_to_dict():  # Map Registry Values in reg_ke
                     if configs.__contains__(k):
                         index = configs.find(k)
                         if stats in reg_keys['Security Options'].keys():
-                            # print(len(stats))
                             status = [reg_keys['Security Options'].get(stats)]
                             mapped = {local_policy['security_options'].get(configs[index:]): status}
                             fine_security_options_dict.update(mapped)
-                            # print(stats)
                         elif stats not in reg_keys['Security Options'].keys():
                             mapped = {local_policy['security_options'].get(configs[index:]): status[1:]}
                             fine_security_options_dict.update(mapped)
@@ -79,7 +77,7 @@ def security_options_registry_values_to_dict():  # Map Registry Values in reg_ke
 
         # for keys, values in fine_security_options_dict.items():
         #     print(keys, '\t', *values)
-        print(colored(fine_security_options_dict, 'red'))
+        # print(colored(fine_security_options_dict, 'red'))
 
         return fine_security_options_dict
 
@@ -133,7 +131,7 @@ def password_policy_to_dict():
                     new_dict = {keys: int(vals)}
                     raw_password_policy_dict.update(new_dict)
 
-        print(colored(raw_password_policy_dict, 'blue'))
+        # print(colored(raw_password_policy_dict, 'blue'))
 
         return raw_password_policy_dict
 
@@ -158,7 +156,7 @@ def lockout_policy_to_dict():
                     new_dict = {keys: int(vals)}
                     raw_lockout_policy_dict.update(new_dict)
 
-        print(colored(raw_lockout_policy_dict, 'blue'))
+        # print(colored(raw_lockout_policy_dict, 'blue'))
 
         return raw_lockout_policy_dict
 
@@ -182,18 +180,9 @@ def event_audit():
                     vals = line[1]
                     new_dict = {keys: reg_keys['Audit'].get(int(vals))}
                     raw_local_p_user_right_dict.update(new_dict)
-            print(colored(raw_local_p_user_right_dict, 'blue'))
+            # print(colored(raw_local_p_user_right_dict, 'blue'))
 
             return raw_local_p_user_right_dict
 
     except IndexError as index_error:
         print(f'Error: {index_error}')
-
-
-password_policy_to_dict()
-lockout_policy_to_dict()
-event_audit()
-privilege_rights_to_dict()
-# other_sec_options_policy_to_dict()    # Added to Security Options, just like in MMC
-security_options_registry_values_to_dict()
-
