@@ -128,9 +128,9 @@ def checker():
     else:
         print(colored(f'{local_policy.get("audit_dict")["AuditSystemEvents"]}: {system_events}', 'blue'))
     if process_tracking == 0:
-        print(colored(f'{local_policy.get("audit_dict")["AuditSystemEvents"]}: {process_tracking}', 'red'))
+        print(colored(f'{local_policy.get("audit_dict")["AuditProcessTracking"]}: {process_tracking}', 'red'))
     else:
-        print(colored(f'{local_policy.get("audit_dict")["AuditSystemEvents"]}: {process_tracking}', 'blue'))
+        print(colored(f'{local_policy.get("audit_dict")["AuditProcessTracking"]}: {process_tracking}', 'blue'))
 
     print(colored(f'{lines}', 'yellow'))
     print(colored('User Rights Assignment', 'yellow'))
