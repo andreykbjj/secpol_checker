@@ -193,7 +193,7 @@ def event_audit():
 
 def advanced_audit():       # Need to extract config & value to dictionary return
 
-    system_start = get_line_number(phrase="Category/Subcategory", file='advanced_audit.txt') + 1
+    system_start = get_line_number(phrase="Category/Subcategory", file='advanced_audit.txt')
     system_end = get_line_number(phrase="Logon/Logoff", file='advanced_audit.txt') - 1
 
     logon_logoff_start = get_line_number(phrase="Logon/Logoff", file='advanced_audit.txt')
@@ -223,10 +223,17 @@ def advanced_audit():       # Need to extract config & value to dictionary retur
         for line in advanced.readlines()[system_start:system_end]:
             line = line.strip('\n').strip('').split('  ')
             line = list(filter(None, line))
-            lines = dict()
+            lines = {}
+            # print(line)
             if len(line) != 0:
-                keys_values = {line[0]: line[1].strip(" ").replace('Auditing', 'auditing')}
+                key = line[0]
+                value = line[1].strip(" ").replace('Auditing', 'auditing')
+                # print(key, value)
+                keys_values = {key: value}
                 lines.update(keys_values)
-                # print(lines)
 
-                return lines
+            print(lines)
+            return lines
+
+
+advanced_audit()
