@@ -161,7 +161,7 @@ local_policy = {
         'SeChangeNotifyPrivilege': 'Bypass traverse checking',
         'SeSystemtimePrivilege': 'Change the system time',
         'SeTimeZonePrivilege': 'Change the time zone',
-        'SeCreatePagefilePrivilege': 'Create a pagefile',
+        'SeCreatePagefilePrivilege': 'Create a page file',
         'SeCreateTokenPrivilege': 'Create a token object',
         'SeCreateGlobalPrivilege': 'Create global objects',
         'SeCreatePermanentPrivilege': 'Create permanent shared objects',
@@ -292,7 +292,7 @@ reg_keys = {
             0: 'No auditing',
             1: 'Success',
             2: 'Failure',
-            3: 'Success, Failure'
+            3: 'Success, Failure',
         },
     'Security Options':
         {
