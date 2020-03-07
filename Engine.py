@@ -288,17 +288,19 @@ def checker():
     print(colored('Advanced Audit Policy', 'yellow'))
     print(colored(f'{lines}', 'yellow'))
 
-    if adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[0]:
-        print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'red'))
-    elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[1]:
-        print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'magenta'))
-    elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[2]:
-        print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'magenta'))
-    elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[3]:
-        print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'blue'))
-    else:
-        print('Something happened')
-        pass
+    print(local_policy.get("adv_audit_dict")["System"][1])
+
+    # if adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[0]:
+    #     print(colored(f'{local_policy.get("audit_dict")["System"]}: {adv_account_logon_audit_credential_validation}', 'red'))
+    # elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[1]:
+    #     print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'magenta'))
+    # elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[2]:
+    #     print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'magenta'))
+    # elif adv_account_logon_audit_credential_validation == reg_keys.get('Audit')[3]:
+    #     print(colored(f'{local_policy.get("audit_dict")["AuditAccountLogon"]}: {adv_account_logon_audit_credential_validation}', 'blue'))
+    # else:
+    #     print('Something happened')
+    #     pass
 
     print(colored(f'{lines}', 'yellow'))
     print(colored('User Rights Assignment', 'yellow'))
