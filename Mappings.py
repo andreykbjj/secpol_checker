@@ -149,6 +149,49 @@ local_policy = {
         "AuditDSAccess": "Audit DS Access",
         "AuditAccountLogon": "Audit Account Logon"
     },
+    # Finish Mapping
+    'adv_audit_dict': {
+        "System": [
+            "Security System Extension",
+            "Audit System Events",
+            "System Integrity",
+            "IPsec Driver",
+            "Other System Events",
+            "Security State Change"
+        ],
+        "Logon/Logoff": [
+            "",
+            ""
+        ],
+        "Object Access": [
+            "",
+            ""
+        ],
+        "Privilege Use": [
+            "",
+            ""
+        ],
+        "Detailed Tracking": [
+            "",
+            ""
+        ],
+        "Policy Change": [
+            "",
+            ""
+        ],
+        "Account Management": [
+            "",
+            ""
+        ],
+        "DS Access": [
+            "",
+            ""
+        ],
+        "Account Logon": [
+            "",
+            ""
+        ]
+    },
     'user_rights_assignment': {
         'SeTrustedCredManAccessPrivilege': 'Access Credential Manager as a trusted caller',
         'SeNetworkLogonRight': 'Access this computer from the network',
