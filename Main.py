@@ -1,8 +1,8 @@
 from termcolor import colored
 from Mappings import sid, local_policy, reg_keys
 
-sec_edit_file = 'secedit.txt'
-advanced_audit_policy_file = 'advanced_audit.txt'
+sec_edit_file = 'this_pc.txt'
+advanced_audit_policy_file = 'adv_audit.txt'
 
 
 def get_line_number(phrase, file):
@@ -17,8 +17,8 @@ def privilege_rights_to_dict():
         raw_local_p_user_right_dict = dict()
         fine_user_right_dict = dict()
 
-        start = get_line_number(phrase="[Privilege Rights]", file='secedit.txt')
-        end = get_line_number(phrase="[Version]", file='secedit.txt') - 1
+        start = get_line_number(phrase="[Privilege Rights]", file=sec_edit_file)
+        end = get_line_number(phrase="[Version]", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as user_rights:
             for line in user_rights.readlines()[start:end]:
@@ -54,8 +54,8 @@ def security_options_registry_values_to_dict():  # Map Registry Values in reg_ke
 
         fine_security_options_dict = dict()
 
-        start = get_line_number(phrase="[Registry Values]", file='secedit.txt')
-        end = get_line_number(phrase="[Privilege Rights]", file='secedit.txt') - 1
+        start = get_line_number(phrase="[Registry Values]", file=sec_edit_file)
+        end = get_line_number(phrase="[Privilege Rights]", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as sec_options:
             for line in sec_options.readlines()[start:end]:
@@ -91,8 +91,8 @@ def other_sec_options_policy_to_dict():
 
         raw_other_sec_options_dict = dict()
 
-        start = get_line_number(phrase="LockoutDuration", file='secedit.txt')
-        end = get_line_number(phrase="[Event Audit]", file='secedit.txt') - 1
+        start = get_line_number(phrase="LockoutDuration", file=sec_edit_file)
+        end = get_line_number(phrase="[Event Audit]", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as sys_access:
             for line in sys_access.readlines()[start:end]:
@@ -120,8 +120,8 @@ def password_policy_to_dict():
 
         raw_password_policy_dict = dict()
 
-        start = get_line_number(phrase="[System Access]", file='secedit.txt')
-        end = get_line_number(phrase="LockoutBadCount", file='secedit.txt') - 1
+        start = get_line_number(phrase="[System Access]", file=sec_edit_file)
+        end = get_line_number(phrase="LockoutBadCount", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as sys_access:
             for line in sys_access.readlines()[start:end]:
@@ -145,8 +145,8 @@ def lockout_policy_to_dict():
 
         raw_lockout_policy_dict = dict()
 
-        start = get_line_number(phrase="PasswordHistorySize", file='secedit.txt')
-        end = get_line_number(phrase="RequireLogonToChangePassword", file='secedit.txt') - 1
+        start = get_line_number(phrase="PasswordHistorySize", file=sec_edit_file)
+        end = get_line_number(phrase="RequireLogonToChangePassword", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as sys_access:
             for line in sys_access.readlines()[start:end]:
@@ -170,8 +170,8 @@ def event_audit():
 
         raw_event_audit_dict = dict()
 
-        start = get_line_number(phrase="[Event Audit]", file='secedit.txt')
-        end = get_line_number(phrase="[Registry Values]", file='secedit.txt') - 1
+        start = get_line_number(phrase="[Event Audit]", file=sec_edit_file)
+        end = get_line_number(phrase="[Registry Values]", file=sec_edit_file) - 1
 
         with open(f'{sec_edit_file}', 'r', encoding='utf16') as audit:
             for line in audit.readlines()[start:end]:
@@ -193,47 +193,19 @@ def event_audit():
 
 def advanced_audit():       # Need to extract config & value to dictionary return
 
-    system_start = get_line_number(phrase="Category/Subcategory", file='advanced_audit.txt')
-    system_end = get_line_number(phrase="Logon/Logoff", file='advanced_audit.txt') - 1
-
-    logon_logoff_start = get_line_number(phrase="Logon/Logoff", file='advanced_audit.txt')
-    logon_logoff_end = get_line_number(phrase="Object Access", file='advanced_audit.txt') - 1
-
-    object_access_start = get_line_number(phrase="Object Access", file='advanced_audit.txt')
-    object_access_end = get_line_number(phrase="Privilege Use", file='advanced_audit.txt') - 1
-
-    privilege_use_start = get_line_number(phrase="Privilege Use", file='advanced_audit.txt')
-    privilege_use_end = get_line_number(phrase="Detailed Tracking", file='advanced_audit.txt') - 1
-
-    detailed_tracking_start = get_line_number(phrase="Detailed Tracking", file='advanced_audit.txt')
-    detailed_tracking_end = get_line_number(phrase="Policy Change", file='advanced_audit.txt') - 1
-
-    policy_change_start = get_line_number(phrase="Policy Change", file='advanced_audit.txt')
-    policy_change_end = get_line_number(phrase="Account Management", file='advanced_audit.txt') - 1
-
-    account_management_start = get_line_number(phrase="Account Management", file='advanced_audit.txt')
-    account_management_end = get_line_number(phrase="DS Access", file='advanced_audit.txt') - 1
-
-    ds_access_start = get_line_number(phrase="DS Access", file='advanced_audit.txt')
-    ds_access_end = get_line_number(phrase="Account Logon", file='advanced_audit.txt') - 1
-
-    account_logon_start = get_line_number(phrase="Account Logon", file='advanced_audit.txt')
+    start = get_line_number(phrase="Category/Subcategory", file=advanced_audit_policy_file)
+    lines = dict()
 
     with open(f'{advanced_audit_policy_file}', 'r', encoding='utf16') as advanced:
-        for line in advanced.readlines()[system_start:system_end]:
+        for line in advanced.readlines()[start:]:
             line = line.strip('\n').strip('').split('  ')
             line = list(filter(None, line))
-            lines = {}
-            # print(line)
             if len(line) != 0:
-                key = line[0]
-                value = line[1].strip(" ").replace('Auditing', 'auditing')
-                # print(key, value)
-                keys_values = {key: value}
-                lines.update(keys_values)
+                if len(line) != 1:
+                    key = line[0]
+                    value = line[1].strip(" ").replace('Auditing', 'auditing').replace('Success and Failure', 'Success, Failure')
+                    keys_values = {key: value}
+                    lines.update(keys_values)
 
-            print(lines)
-            return lines
-
-
-advanced_audit()
+        # print(lines)
+        return lines
