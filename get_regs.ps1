@@ -91,4 +91,4 @@ $keys | % {
   $_ -ne 'Windows Registry Editor Version 5.00'
 } | Add-Content $outputFile
 
-Remove-Item -recurse $tempFolder\* -exclude reg_keys.reg ,foldertokeep 
+Remove-Item -recurse $tempFolder\* -exclude reg_keys.reg
