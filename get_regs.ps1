@@ -79,7 +79,7 @@ $keys = "HKEY_LOCAL_MACHINE\software\policies\microsoft\windows\grouppolicy\{353
 "HKEY_LOCAL_MACHINE\software\policies\microsoft\wmdrm\"
 
 $tempFolder = 'K:\reg_keys\'
-$outputFile = 'K:\reg_keys\merged.reg'
+$outputFile = 'K:\reg_keys\reg_keys.reg'
 
 $keys | % {
   $i++
@@ -90,3 +90,5 @@ $keys | % {
 (Get-Content "$tempFolder\*.reg") | ? {
   $_ -ne 'Windows Registry Editor Version 5.00'
 } | Add-Content $outputFile
+
+Remove-Item -recurse $tempFolder\* -exclude reg_keys.reg ,foldertokeep 
