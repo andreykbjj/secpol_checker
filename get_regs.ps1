@@ -1,3 +1,5 @@
+# SIG WINDOWS SERVER 2012 R2
+
 $keys = "HKEY_LOCAL_MACHINE\software\policies\microsoft\windows\grouppolicy\{35378eac-683f-11d2-a89a-00c04fbbcfa2}\",
 "HKEY_LOCAL_MACHINE\software\policies\microsoft\windows\wdi\{9c5a40da-b965-4fc3-8781-88dd50a6299d}\",
 "HKEY_LOCAL_MACHINE\software\policies\microsoft\power\powersettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51\",
