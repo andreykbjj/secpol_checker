@@ -1,5 +1,13 @@
 from reg_value_names import reg_values
 
+
+def check_duplicates(_list: list):
+    duplicates = []
+    for item in _list:
+        if _list.count(item) > 1:
+            duplicates.append(item)
+    print(duplicates)
+
 new_list = list()
 with open('transcript.txt', 'r', encoding='utf8') as transcript:
     for line in transcript.readlines():
